@@ -5,7 +5,8 @@ import Filter from './Filter'
 
 class Home extends React.Component {
     state = {
-       input: ""
+       input: "",
+       likes: 0
     }
 
     searchChange = (search) => {
@@ -22,7 +23,7 @@ class Home extends React.Component {
 
     filter = () => {
        return this.props.articles.filter(article => {
-        return article.title.includes(this.state.input)
+            return article.title.toLowerCase().includes(this.state.input)
         })
     }
 
@@ -32,7 +33,6 @@ class Home extends React.Component {
                 home:
                 <Filter searchChange={this.searchChange}/> 
                 {this.articles()}
-                
             </div>
         )
     }
