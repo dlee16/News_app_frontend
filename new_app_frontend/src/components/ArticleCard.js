@@ -4,14 +4,13 @@ import { NavLink } from 'react-router-dom'
 const ArticleCard = (props) => {
     return (
         <div>
-            <h3>{props.article.title}</h3>
-            <h3>{props.article.author}</h3>
-            <h3>{props.article.image}</h3>
-            <h3>{props.article.description}</h3>
-            <h3>{props.article.likes}</h3>
-            <h3>{props.article.published_date}</h3>
+            <h3>Title: {props.article.title}</h3>
+            <h3>Author: {props.article.author}</h3>
+            <img src={props.article.image} width="500px" height="300px"/>
+            <h3>Likes: {props.article.likes}</h3>
+            <h3>Date: {props.article.published_date}</h3>
             
-            <NavLink to={'article/' + props.article.title} > Sign up to read full article </NavLink>
+            <NavLink to={'/login'} > Sign in to get the Scoop </NavLink>
         </div>
     )
 } 
