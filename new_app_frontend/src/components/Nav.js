@@ -2,15 +2,18 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 
 const Nav = (props) => {
+
+    
+
     return (
-       <div>
-           <NavLink to='/home'> Home </NavLink>
+        <div className="ui pointing menu">
+           <NavLink className="item" to='/home'> Home </NavLink>
             <br/>
-            <NavLink to='/login'> Login/Sign Up </NavLink>
+            <NavLink className="item" to='/login'> Login/Sign Up </NavLink>
             <br/>
-            <NavLink to='/profile'> My Profile </NavLink>
+            <NavLink className="item" to='/profile'> My Profile </NavLink>
             <br/>
-            <NavLink to='/saved_articles'> Saved Articles </NavLink>
+            <NavLink className="item" to='/saved_articles'> Saved Articles </NavLink>
        </div>
     )
 }

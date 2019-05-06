@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Header = (props) => {
+const Header = () => {
     return (
-        <h1>logo goes here!</h1>
+        <div className="ui center aligned container">
+            <img src="../logo2.png" width="180px" height="130px" alt="logo" />
+        </div>
     )
 }
 

@@ -15,8 +15,8 @@ class Filter extends React.Component {
 
     render() {
         return (
-            <div>
-                <input onChange = {this.handleChange} type="text" placeholder="Search by title...." value={this.state.search}/>
+            <div className="ui medium fluid icon input">
+                <input onChange={this.handleChange} type="text" placeholder="Search by title...." value={this.state.search} /><i aria-hidden="true" className="search circular link icon"></i>
             </div>
         )
     }
