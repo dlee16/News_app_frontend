@@ -17,7 +17,7 @@ class Home extends React.Component {
 
     articles = () => {
        return this.filter().map(article => {
-            return <Article key={v4()} article={article} /> 
+            return <Article key={v4()} likes={this.state.likes} article={article} /> 
         })
     }
 
@@ -30,7 +30,6 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                home:
                 <Filter searchChange={this.searchChange}/> 
                 {this.articles()}
             </div>
