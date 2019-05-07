@@ -1,14 +1,41 @@
 import React from 'react'
+import v4 from 'uuid'
 
 class ArticleContent extends React.Component{
-    // constructor(props){
-    //     super(props)
-    //     this.state = {likes: this.props.article.likes}
-    // }
     
+    state ={
+        input: "",
+        comments: [],
+    }
 
+    handleFavClick = () => {
+        this.props.addToFavorites(this.props.article)
+    }
+    
+    componentDidMount(){
+        fetch('http://localhost:3000/comments')
+        .then(res => res.json())
+        .then(res => {
+            let filteredComments = res.filter(comment => { 
+                console.log(this.props)
+                
+            // const mappedComments = filteredComments.map(comment => comment.user_comment)
+            // this.setState({comments: mappedComments})
+        })
+    })
+    }
 
+    
+    handleChange = (e) => {
+        this.setState({
+            input: e.target.value
+        })
+    }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.updateComments(this.props.article.id, this.state.input)
+    }
 
     handleClick = () => {
         this.props.updateLikes(this.props.article.id)
@@ -21,18 +48,21 @@ class ArticleContent extends React.Component{
 
     userComments = () => {
         
-        if (this.props.article.comment){
+        if (this.state.comments){
             return (
-                this.props.article.comments.map(comment => {
-                    return <li>{comment.user_comment}</li>
+                this.state.comments.map(comment => {
+                    return <li key={v4()}> {comment}</li>
                 })
             )
         }
     }
 
 
+
     render (){
+        
         if (this.props.article) {
+            
         return (
             <div className="ui container">
                 <div className="ui centered celled grid">
@@ -61,7 +91,7 @@ class ArticleContent extends React.Component{
                     </button>
                      <div className="content divider"></div>
                    <br/>
-                    <button className="ui yellow animated button">
+                    <button onClick={this.handleFavClick} className="ui yellow animated button">
                         <div className="visible content">Save Article</div>
                         <div className="hidden content"><i aria-hidden="true" className="arrow right icon"></i>
                         </div>
@@ -71,9 +101,29 @@ class ArticleContent extends React.Component{
 
                 <h3 className="ui centered header">Source: {this.props.article.source}</h3>
                 
-                <h3 className="ui centered header"> Comments: {this.userComments() ? this.userComments() : null} </h3>
-
-                        <div className="ui minimal comments"><h3 className="ui dividing header">Comments</h3><div className="comment"><a className="avatar"><img src="/images/avatar/small/matt.jpg" /></a><div className="content"><a className="author">Matt</a><div className="metadata"><span>Today at 5:42PM</span></div><div className="text">How artistic!</div><div className="actions"><a>Reply</a></div></div></div><div className="comment"><a className="avatar"><img src="/images/avatar/small/elliot.jpg" /></a><div className="content"><a className="author">Elliot Fu</a><div className="metadata"><span>Yesterday at 12:30AM</span></div><div className="text"><p>This has been very useful for my research. Thanks as well!</p></div><div className="actions"><a>Reply</a></div></div><div className="ui comments"><div className="comment"><a className="avatar"><img src="/images/avatar/small/jenny.jpg" /></a><div className="content"><a className="author">Jenny Hess</a><div className="metadata"><span>Just now</span></div><div className="text">Elliot you are always so right :)</div><div className="actions"><a>Reply</a></div></div></div></div></div><div className="comment"><a className="avatar"><img src="/images/avatar/small/joe.jpg" /></a><div className="content"><a className="author">Joe Henderson</a><div className="metadata"><span>5 days ago</span></div><div className="text">Dude, this is awesome. Thanks so much</div><div className="actions"><a>Reply</a></div></div></div><form className="ui reply form"><div className="field"><textarea rows="3"></textarea></div><button className="ui icon yellow left labeled button"><i aria-hidden="true" className="edit icon"></i>Add Reply</button></form></div>
+                        <div className="ui minimal comments">
+                            <h3 className="ui dividing header">Comments</h3>
+                                <div className="comment"><a className="avatar">
+                                    <img src="/images/avatar/small/matt.jpg" /></a>
+                                        <div className="content">
+                                        <a className="author">Matt</a>
+                                            <div className="metadata">
+                                                <span>Today at 5:42PM</span>
+                                            </div>
+                                            <div className="text">{this.userComments()}</div>
+                                            <div className="actions"><a>Reply</a>
+                                            </div>
+                                    </div>
+                                </div><div className="comment"><a className="avatar"><img src="/images/avatar/small/elliot.jpg" /></a><div className="content"><a className="author">Elliot Fu</a><div className="metadata"><span>Yesterday at 12:30AM</span></div><div className="text"><p>This has been very useful for my research. Thanks as well!</p></div><div className="actions"><a>Reply</a></div></div><div className="ui comments"><div className="comment"><a className="avatar"><img src="/images/avatar/small/jenny.jpg" /></a><div className="content"><a className="author">Jenny Hess</a><div className="metadata"><span>Just now</span></div><div className="text">Elliot you are always so right :)</div><div className="actions"><a>Reply</a></div></div></div></div></div><div className="comment"><a className="avatar"><img src="/images/avatar/small/joe.jpg" /></a><div className="content"><a className="author">Joe Henderson</a><div className="metadata"><span>5 days ago</span></div><div className="text">Dude, this is awesome. Thanks so much</div><div className="actions"><a>Reply</a></div></div></div>
+                        
+                    <form onSubmit={this.handleSubmit} className="ui reply form">
+                        <div className="field">
+                            <textarea rows="3" value={this.state.input} onChange={this.handleChange} >
+                                </textarea>
+                        </div>
+                        <button className="ui icon yellow left labeled button"><i aria-hidden="true" className="edit icon"></i>Add Reply</button>
+                    </form>
+                </div>
             </div>
             </div>
                 </div>
