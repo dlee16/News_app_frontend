@@ -6,7 +6,6 @@ import Filter from './Filter'
 class Home extends React.Component {
     state = {
        input: "",
-       likes: 0
     }
 
     searchChange = (search) => {
@@ -17,7 +16,7 @@ class Home extends React.Component {
 
     articles = () => {
        return this.filter().map(article => {
-            return <Article key={v4()} likes={this.state.likes} article={article} /> 
+            return <Article key={v4()} article={article} /> 
         })
     }
 

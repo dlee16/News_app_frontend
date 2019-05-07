@@ -13,7 +13,7 @@ const Nav = (props) => {
             <br/>
             <NavLink className="item" to='/profile'> My Profile </NavLink>
             <br/>
-            <NavLink className="item" to='/saved_articles'> Saved Articles </NavLink>
+            <NavLink className="item" to='/favorites'> Saved Articles </NavLink>
        </div>
     )
 }
