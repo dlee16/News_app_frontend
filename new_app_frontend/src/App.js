@@ -7,7 +7,7 @@ import { Route} from 'react-router-dom'
 
 class App extends React.Component {
 
-  state ={ 
+  state ={
     currentUser: null
   }
 
@@ -25,6 +25,17 @@ class App extends React.Component {
     this.setState({
       currentUser: updatedUser
     })
+  }
+
+  deleteProfile = () => {
+    console.log('deleting')
+    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
+      method: "DELETE"
+    })
+    .then(this.setState({
+      currentUser: null
+    }))
+    .then(this.props.history.push('/home'))
   }
 
   componentDidMount() {
@@ -81,16 +92,16 @@ class App extends React.Component {
     if (this.state.currentUser){
       this.setState({
         currentUser: {...this.state.currentUser,favorites: [...this.state.currentUser.favorites, resp] }
-      })  
+      })
     }
   }
 
   render(){
     return (
       <div>
-        < Header /> 
+        < Header />
         < MainContainer updateFavorites={this.updateFavorites} logOut={this.logOut} currentUser={this.state.currentUser}
-          setCurrentUser={this.setCurrentUser} /> 
+          setCurrentUser={this.setCurrentUser} deleteProfile={this.deleteProfile}/>
         < Route exact path="/signup" render={(routeProps) => (< Signup {...routeProps } createUser = {this.createUser}/>)} />
       </div>
 
