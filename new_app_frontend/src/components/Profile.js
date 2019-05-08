@@ -1,6 +1,11 @@
 import React from 'react'
 
 class Profile extends React.Component{
+
+    deleteProfile = () => {
+      this.props.deleteProfile()
+    }
+
     render() {
         if(this.props.currentUser){
             return (
@@ -16,6 +21,7 @@ class Profile extends React.Component{
                                 <div class="ui divider"></div>
                                 <h2>Since joining the Scoop you've:</h2>
                                 <h3><li>Favorited {this.props.currentUser.favorites.length} articles</li></h3>
+                                <button onClick={this.deleteProfile}>Delete Profile</button>
                             </div>
                         </div>
                     </div>
@@ -26,8 +32,6 @@ class Profile extends React.Component{
         else {
             return null
         }
-    }
 }
 
 export default Profile;
- 
