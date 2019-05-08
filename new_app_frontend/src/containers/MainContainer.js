@@ -13,7 +13,6 @@ class MainContainer extends React.Component{
 
     state = {
         articles: [],
-        user: "",
         articleComment: [],
         favorites: []
     }
@@ -54,7 +53,6 @@ class MainContainer extends React.Component{
         })
     }
 
-
     updateComments = (id, input) => {
 
         fetch(`http://localhost:3000/comments`, {
@@ -62,23 +60,28 @@ class MainContainer extends React.Component{
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ 
-                    article_id: id,
-                    user_id: 1,
-                    user_comment: input
-                }),
+            body: JSON.stringify({
+                article_id: id,
+                user_id: this.props.currentUser.id,
+                user_comment: input
+            }),
         })
-        .then (res => res.json())
-        .then(res => {
-            this.setState(prevState => ({
-                articleComment: [...prevState.articleComment, res.user_comment]
-            }))
-        })           
+            .then(res => res.json())
+            .then(res => {
+                let articleComments = this.state.articles.find(article => article.id === id)
+                articleComments.comments.push(res)
+                let newArticleState = [...this.state.articles].find(article => article.id === id)
+                let articles = [...this.state.articles]
+                let updateArticles = articles.splice(articles.indexOf(newArticleState), 1, articleComments)
+
+                this.setState({
+                    articles: updateArticles
+                })
+            })
     }
 
 
     addToFavorites = (article) => {
-
         fetch(`http://localhost:3000/favorites`, {
             method: 'POST',
             headers: {
@@ -86,30 +89,37 @@ class MainContainer extends React.Component{
             },
             body: JSON.stringify({
                 article_id: article.id,
-                user_id: 1,
+                user_id: this.props.currentUser.id,
             }),
         })
             .then(res => res.json())
-            .then(() => {
-                this.setState(prevState => ({
-                    favorites: [...prevState.favorites, article]
-                }))
+            .then((resp) => {
+                this.props.updateFavorites(resp)
             })
     }
 
+
+    
     findArticle = (title) => {
         return this.state.articles.find(article => article.title === title)
     }
 
     render() {
+        console.log(this.state.articles)
         return(
             <div >
-                <Nav /> 
-                <Route exact path="/home" render={(routeProps) => (< Home {...routeProps} articles={this.state.articles} />)} />
-                <Route exact path="/favorites" render={(routeProps) => (< Favorites {...routeProps}  favorites={this.state.favorites} />)} />
-                <Route path={'/article/:title'} render={(routeProps) => (<ArticleContent {...routeProps} addToFavorites={this.addToFavorites} likes = {this.state.likes} articleComment ={this.state.articleComment} updateComments ={this.updateComments} updateLikes ={this.updateLikes} article={this.findArticle(routeProps.match.params.title)} />)} />
-                <Route exact path="/login" render={(routeProps) => (< Login {...routeProps} user={this.state.user} />)} />
-                <Route exact path="/user/:id/profile" render={(routeProps) => (< Profile {...routeProps} user={this.state.user} />)} />
+                <Nav logOut={this.props.logOut}  currentUser={this.props.currentUser} /> 
+                <Route exact path="/home" render={(routeProps) => (< Home {...routeProps} currentUser={this.props.currentUser} articles={this.state.articles} />)} />
+                <Route exact path="/favorites" render={(routeProps) => (< Favorites {...routeProps}  articles={this.state.articles} currentUser={this.props.currentUser}  />)} />
+                <Route path={'/article/:title'} render={(routeProps) => (<ArticleContent {...routeProps} 
+                addToFavorites={this.addToFavorites} 
+                likes = {this.state.likes}  
+                updateComments ={this.updateComments} 
+                updateLikes ={this.updateLikes}  
+                article={this.findArticle(routeProps.match.params.title)} />)} />
+                <Route exact path="/login" render={(routeProps) => (< Login {...routeProps} setCurrentUser={this.props.setCurrentUser} />)} />
+                <Route exact path={this.props.currentUser ? `/${this.props.currentUser.id}/profile`: '/home'} render={(routeProps) => (< Profile {...routeProps} currentUser={this.props.currentUser} />)} />
+                
             </div>
         )
     }

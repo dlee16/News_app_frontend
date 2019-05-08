@@ -2,6 +2,15 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const ArticleCard = (props) => {
+    const renderButton = () => {
+        if(props.currentUser){
+            return <NavLink className="ui yellow button" to={`/article/${props.article.title}`} > Article details <i aria-hidden="true" className="right chevron icon"></i> </NavLink>
+        } else{
+            return <NavLink className="ui yellow button" to={'/login'} > Sign in to get the Scoop <i aria-hidden="true" className="right chevron icon"></i> </NavLink>
+
+        }
+    }
+
     return (
 
         <div className="ui container">
@@ -19,12 +28,9 @@ const ArticleCard = (props) => {
                         </div>
 
                         <h4 className="ui centered header">Date: {props.article.published_date}</h4>
-
-                        <NavLink className="ui yellow button" to={'/login'} > Sign in to get the Scoop <i aria-hidden="true" className="right chevron icon"></i> </NavLink>
-                        <br/>
-
-                        <NavLink className="ui yellow button" to={`/article/${props.article.title}`} > Article details <i aria-hidden="true" className="right chevron icon"></i> </NavLink>
-                        <br />
+                    
+                            {renderButton()}
+                        
                     </div>
                     <div className=" ten wide column">
                         <img src={props.article.image} alt="broken" width="500px" height="300px" className="ui large rounded centered image" />

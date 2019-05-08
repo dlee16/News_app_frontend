@@ -4,7 +4,7 @@ import ArticleCard from './ArticleCard'
 const Article = (props) => {
     return (
         <div>
-            <ArticleCard article={props.article} /> 
+            <ArticleCard currentUser={props.currentUser} article={props.article} /> 
         </div>
     )
 }

@@ -16,7 +16,7 @@ class Home extends React.Component {
 
     articles = () => {
        return this.filter().map(article => {
-            return <Article key={v4()} article={article} /> 
+            return <Article key={v4()} currentUser={this.props.currentUser} article={article} /> 
         })
     }
 
