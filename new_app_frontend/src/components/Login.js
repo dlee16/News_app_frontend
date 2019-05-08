@@ -5,12 +5,19 @@ import React from 'react'
 class Login extends React.Component{
     state={
         username: "",
-        password: ""
+        password: "", 
+        error: ""
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
+        })
+    }
+
+    errorDisplay = (error) => {
+        this.setState({
+            error
         })
     }
 
@@ -27,7 +34,7 @@ class Login extends React.Component{
             .then(res => res.json())
             .then(response => {
                if (response.errors){
-                    alert(response.errors)
+                    this.errorDisplay(response.errors)
                } else {
                    this.props.setCurrentUser(response)
                }
@@ -60,6 +67,10 @@ class Login extends React.Component{
                             </div>
                             <button className="ui yellow button">Login</button>
                         </form>
+                        <div className={this.state.error ? "ui message" : "ui hidden message"}> 
+                                 <h3 className="centered">{this.state.error ? this.state.error : null} </h3>
+                        </div>
+                          
                     </div>
                     <div className="middle aligned column">
                         <button onClick={this.handleSignUpClick} className="ui big yellow button">
