@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom'
 const ArticleCard = (props) => {
     const renderButton = () => {
         if(props.currentUser){
-            return <div className="centered"><NavLink className="ui yellow button" to={`/article/${props.article.title}`} > Article details <i aria-hidden="true" className="right chevron icon"></i> </NavLink></div>
+            return <div className="centered"><NavLink className="ui black button" to={`/article/${props.article.title}`} > Article details <i aria-hidden="true" className="right chevron icon"></i> </NavLink></div>
         } else{
-            return <div className="centered"><NavLink className="ui yellow button" to={'/login'} > Sign in to get the Scoop <i aria-hidden="true" className="right chevron icon"></i> </NavLink></div>
+            return <div className="centered"><NavLink className="ui black button" to={'/login'} > Sign in to get the Scoop <i aria-hidden="true" className="right chevron icon"></i> </NavLink></div>
 
         }
     }
@@ -22,10 +22,10 @@ const ArticleCard = (props) => {
 
                         <div className="centered">
                             <div className="ui labeled button">
-                                <button className="ui red button" tabIndex="0">
+                                <button className="ui yellow button" tabIndex="0">
                                     <i aria-hidden="true" className="heart icon"></i>
                                     Likes</button>
-                                <div className="ui red left pointing basic label">{props.article.likes}
+                                <div className="ui yellow left pointing basic label">{props.article.likes}
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@ const ArticleCard = (props) => {
                         
                     </div>
                     <div className=" ten wide column">
-                        <img src={props.article.image} alt="broken" width="500px" height="300px" className="ui large rounded centered image" />
+                        <img src={props.article.image ? props.article.image : "../logo2.png" } alt="../logo2.png" width="500px" height="300px" className="ui large rounded centered image" />
                     </div>
                 </div>
             </div>
