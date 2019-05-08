@@ -7,7 +7,7 @@ import Login from '../components/Login'
 import Profile from '../components/Profile'
 import Favorites from '../components/Favorites'
 
-const url = 'http://localhost:3000/articles'
+const url = 'http://localhost:3000/articles/find_articles'
 
 class MainContainer extends React.Component{
 
@@ -73,9 +73,9 @@ class MainContainer extends React.Component{
                 let newArticleState = [...this.state.articles].find(article => article.id === id)
                 let articles = [...this.state.articles]
                 let updateArticles = articles.splice(articles.indexOf(newArticleState), 1, articleComments)
-
+                console.log(updateArticles)
                 this.setState({
-                    articles: updateArticles
+                    articles: articles
                 })
             })
     }
@@ -110,14 +110,20 @@ class MainContainer extends React.Component{
             <div >
                 <Nav logOut={this.props.logOut}  currentUser={this.props.currentUser} /> 
                 <Route exact path="/home" render={(routeProps) => (< Home {...routeProps} currentUser={this.props.currentUser} articles={this.state.articles} />)} />
-                <Route exact path="/favorites" render={(routeProps) => (< Favorites {...routeProps}  articles={this.state.articles} currentUser={this.props.currentUser}  />)} />
+
+                <Route exact path="/favorites" render={(routeProps) => (< Favorites {...routeProps}  
+                articles={this.state.articles} 
+                currentUser={this.props.currentUser}  />)} />
+
                 <Route path={'/article/:title'} render={(routeProps) => (<ArticleContent {...routeProps} 
                 addToFavorites={this.addToFavorites} 
                 likes = {this.state.likes}  
                 updateComments ={this.updateComments} 
                 updateLikes ={this.updateLikes}  
                 article={this.findArticle(routeProps.match.params.title)} />)} />
+
                 <Route exact path="/login" render={(routeProps) => (< Login {...routeProps} setCurrentUser={this.props.setCurrentUser} />)} />
+
                 <Route exact path={this.props.currentUser ? `/${this.props.currentUser.id}/profile`: '/home'} render={(routeProps) => (< Profile {...routeProps} currentUser={this.props.currentUser} />)} />
                 
             </div>

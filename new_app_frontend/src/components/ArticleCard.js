@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom'
 const ArticleCard = (props) => {
     const renderButton = () => {
         if(props.currentUser){
-            return <NavLink className="ui yellow button" to={`/article/${props.article.title}`} > Article details <i aria-hidden="true" className="right chevron icon"></i> </NavLink>
+            return <div className="centered"><NavLink className="ui yellow button" to={`/article/${props.article.title}`} > Article details <i aria-hidden="true" className="right chevron icon"></i> </NavLink></div>
         } else{
-            return <NavLink className="ui yellow button" to={'/login'} > Sign in to get the Scoop <i aria-hidden="true" className="right chevron icon"></i> </NavLink>
+            return <div className="centered"><NavLink className="ui yellow button" to={'/login'} > Sign in to get the Scoop <i aria-hidden="true" className="right chevron icon"></i> </NavLink></div>
 
         }
     }
@@ -19,11 +19,14 @@ const ArticleCard = (props) => {
                     <div className="six wide column">
                         <h3 className="ui centered header">{props.article.title}</h3>
                         <h5 className="ui centered header">by: {props.article.author}</h5>
-                        <div className="ui labeled button">
-                            <button className="ui center red button" tabIndex="0">
-                                <i aria-hidden="true" className="heart icon"></i>
-                                Likes</button>
-                            <div className="ui red left pointing basic label">{props.article.likes}
+
+                        <div className="centered">
+                            <div className="ui labeled button">
+                                <button className="ui red button" tabIndex="0">
+                                    <i aria-hidden="true" className="heart icon"></i>
+                                    Likes</button>
+                                <div className="ui red left pointing basic label">{props.article.likes}
+                                </div>
                             </div>
                         </div>
 

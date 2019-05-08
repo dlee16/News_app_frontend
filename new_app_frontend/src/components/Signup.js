@@ -20,21 +20,40 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="field">
-                    <label>Username</label>
-                    <input onChange={this.handleChange} name="username" value={this.state.username} placeholder='Username' />
+            <div className = "ui container" >
+                <div className="ui celled grid">
+                    <div className="row">
+                        <div className="sixteen wide column">
+                            <form className="ui form" onSubmit={this.handleSubmit}>
+                                <div className="field">
+                                    <div className="centered">
+                                    <label>Name</label>
+                                    </div>
+                                    <br/>
+                                    <input onChange={this.handleChange} name="name" value={this.state.name} placeholder='Enter name' />
+
+                                </div>
+                                <div className="field">
+                                    <div className="centered">
+                                        <label>Username</label>
+                                    </div>
+                                    <input onChange={this.handleChange} name="username" value={this.state.username} placeholder='Enter username' />
+                                </div>
+                                
+                                <div className="field">
+                                    <div className="centered">
+                                        <label>Password</label>
+                                    </div>
+                                    <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder='Set  password' />
+                                </div>
+                                <div className="centered">
+                                <button className="ui yellow button"type='submit'>Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div className="field">
-                    <label>Name</label>
-                    <input onChange={this.handleChange} name="name" value={this.state.name} placeholder='Name' />
-                </div>
-                <div className="field">
-                    <label>Password</label>
-                    <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder='Password' />
-                </div>
-                <button type='submit'>Submit</button>
-            </form>
+            </div>
         )
     }
 }
