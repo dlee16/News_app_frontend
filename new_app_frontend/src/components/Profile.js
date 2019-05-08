@@ -1,17 +1,23 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 
 class Profile extends React.Component{
     render() {
         return (
-            <div>
-                PROFILE PAGE
-                <NavLink to='/profile'> My Profile </NavLink>
-                <br />
-                <NavLink to='/saved_articles'> Saved Articles </NavLink>
+            <div className="ui container">
+                <div className="ui centered celled grid">
+                    <div className="row">
+                        <div className="ten wide column">
+                            <h2 className="ui centered header">Welcome {this.props.currentUser ? this.props.currentUser.name : null} !</h2>
+                            
+                            <img src="https://png.pngtree.com/svg/20161021/de74bae88b.png" alt="broken" className="ui big rounded centered" />
+                        </div>
+                    </div>
+                </div>
             </div>
+                            
         )
     }
 }
 
 export default Profile;
+ 
