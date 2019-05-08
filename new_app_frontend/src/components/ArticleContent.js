@@ -50,22 +50,22 @@ class ArticleContent extends React.Component{
                         <div className="ten wide column">
                             <h2 className="ui centered header">{this.props.article.title}</h2>
                             <h4 className="ui centered header">by: {this.props.article.author}</h4>
-                            <img src={this.props.article.image} alt="broken" className="ui big rounded centered" />
+                           <img src={this.props.article.image ? this.props.article.image : "../logo2.png"} alt="../logo2.png" className="ui big rounded centered" />
                             <br />
                             <h3 className="ui centered header">{this.props.article.description}</h3>
                             <div className="centered">
                                 <div className="ui labeled button">
-                                    <div className="ui right floated red button" tabIndex="0">
+                                    <div className="ui right floated yellow button" tabIndex="0">
                                         <i aria-hidden="true" className="heart icon"></i>
                                         Likes</div>
-                                    <div className="ui red left pointing basic label">{this.props.article.likes}
+                                    <div className="ui yellow left pointing basic label">{this.props.article.likes}
                                     </div>
                                 </div>
                             </div>
                             <h3 className="ui centered header"> Date:{this.props.article.published_date}</h3>
                             <div className="centered">
                                 <div className="ui buttons">
-                                    <button className="ui yellow animated button" onClick={this.openArticle}>
+                                    <button className="ui black animated button" onClick={this.openArticle}>
                                         <div className="visible content">Click here to read more!</div>
                                         <div className="hidden content"><i aria-hidden="true" className="arrow right icon"></i>
                                         </div>
@@ -87,29 +87,29 @@ class ArticleContent extends React.Component{
                         <div className="ten wide column">
                             <h2 className="ui centered header">{this.props.article.title}</h2>
                             <h4 className="ui centered header">by: {this.props.article.author}</h4>
-                            <img src={this.props.article.image} alt="broken" className="ui big rounded centered" />
+                           <img src={this.props.article.image ? this.props.article.image: "../logo2.png"} alt="../logo2.png" className="ui big rounded centered" />
                             <br />
                             <h3 className="ui centered header">{this.props.article.description}</h3>
                             <div className="centered">
                                 <div className="ui labeled button">
-                                    <button onClick={this.handleClick} className="ui right floated red button" tabIndex="0">
+                                    <button onClick={this.handleClick} className="ui right floated yellow button" tabIndex="0">
                                         <i aria-hidden="true" className="heart icon"></i>
                                         Likes</button>
-                                    <div className="ui red left pointing basic label">{this.props.article.likes}
+                                    <div className="ui yellow left pointing basic label">{this.props.article.likes}
                                     </div>
                                 </div>
                             </div>
                             <h3 className="ui centered header"> Date:{this.props.article.published_date}</h3>
                             <div className="centered">
                                 <div className="ui buttons">
-                                    <button className="ui yellow animated button" onClick={this.openArticle}>
+                                    <button className="ui black animated button" onClick={this.openArticle}>
                                         <div className="visible content">Click here to read more!</div>
                                         <div className="hidden content"><i aria-hidden="true" className="arrow right icon"></i>
                                         </div>
                                     </button>
                                     <div className="or"></div>
                                     <br />
-                                    <button onClick={this.handleFavClick} className="ui yellow animated button">
+                                    <button onClick={this.handleFavClick} className="ui black animated button">
                                         <div className="visible content">Save Article</div>
                                         <div className="hidden content"><i aria-hidden="true" className="arrow right icon"></i>
                                         </div>
