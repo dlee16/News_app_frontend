@@ -1,7 +1,9 @@
 ## About
 
 EXTRA! EXTRA! Read all about it! 
+
 At THE SCOOP, we show you the latest US headlines happening now!
+
 In order to get the full experience, make sure you create an account to view the article contents.
 
 Interested in a particular topic? Use our search bar feature to to filter for your latest news. 
