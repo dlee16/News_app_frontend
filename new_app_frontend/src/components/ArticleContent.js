@@ -49,7 +49,7 @@ class ArticleContent extends React.Component{
                     <div className="row">
                         <div className="ten wide column">
                             <h2 className="ui centered header">{this.props.article.title}</h2>
-                            <h4 className="ui centered header">by: {this.props.article.author}</h4>
+                           <h4 className="ui centered header">by: {this.props.article.author === null ? "Author Unknown" : this.props.article.author}</h4>
                            <img src={this.props.article.image ? this.props.article.image : "../logo2.png"} alt="../logo2.png" className="ui big rounded centered" />
                             <br />
                             <h3 className="ui centered header">{this.props.article.description}</h3>
@@ -86,7 +86,7 @@ class ArticleContent extends React.Component{
                     <div className="row">
                         <div className="ten wide column">
                             <h2 className="ui centered header">{this.props.article.title}</h2>
-                            <h4 className="ui centered header">by: {this.props.article.author}</h4>
+                           <h4 className="ui centered header">by: {this.props.article.author === null ? "Author Unknown" : this.props.article.author}</h4>
                            <img src={this.props.article.image ? this.props.article.image: "../logo2.png"} alt="../logo2.png" className="ui big rounded centered" />
                             <br />
                             <h3 className="ui centered header">{this.props.article.description}</h3>

@@ -3,8 +3,8 @@ import React from 'react'
 const Header = () => {
     return (
         
-        <div className="ui center aligned container">
-            <img src="../logo2.png" width="200px" height="150px" alt="logo" />
+        <div className="centered yellow">
+            <img src="../logo4.png" width="300px" height="175px" alt="logo" />
         </div>
       
     )

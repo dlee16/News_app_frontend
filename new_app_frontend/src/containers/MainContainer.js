@@ -105,7 +105,6 @@ class MainContainer extends React.Component{
     }
 
     render() {
-        console.log(this.state.articles)
         return(
             <div >
                 <Nav logOut={this.props.logOut}  currentUser={this.props.currentUser} />

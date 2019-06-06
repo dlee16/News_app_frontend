@@ -4,21 +4,21 @@ import { NavLink } from 'react-router-dom'
 const ArticleCard = (props) => {
     const renderButton = () => {
         if(props.currentUser){
+            // const receivedArticleName = encodeURIComponent(props.article.title)
             return <div className="centered"><NavLink className="ui black button" to={`/article/${props.article.title}`} > Article details <i aria-hidden="true" className="right chevron icon"></i> </NavLink></div>
         } else{
             return <div className="centered"><NavLink className="ui black button" to={'/login'} > Sign in to get the Scoop <i aria-hidden="true" className="right chevron icon"></i> </NavLink></div>
 
         }
     }
-
+    
     return (
-
         <div className="ui container">
             <div className="ui celled grid">
                 <div className="row">
                     <div className="six wide column">
                         <h3 className="ui centered header">{props.article.title}</h3>
-                        <h5 className="ui centered header">by: {props.article.author}</h5>
+                        <h5 className="ui centered header">by: {props.article.author === null ? "Author Unknown" : props.article.author}</h5>
 
                         <div className="centered">
                             <div className="ui labeled button">
