@@ -28,7 +28,6 @@ class App extends React.Component {
   }
 
   deleteProfile = () => {
-    console.log('deleting')
     fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
       method: "DELETE"
     })
