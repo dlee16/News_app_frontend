@@ -5,6 +5,7 @@ class SignupForm extends React.Component {
         name: "",
         username: "",
         password: "",
+        error: ""
     }
 
     handleChange = (event) => {
@@ -13,45 +14,55 @@ class SignupForm extends React.Component {
         })
     }
 
-    handleSubmit = () => {
+    errorDisplay = (error) => {
+        this.setState({
+            error
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
         this.props.createUser(this.state)
-        this.props.history.push('/home')
+            // this.props.history.push('/home')
     }
 
     render() {
         return (
-            <div className = "ui container" >
-                <div className="ui celled grid">
-                    <div className="row">
-                        <div className="sixteen wide column">
-                            <form className="ui form" onSubmit={this.handleSubmit}>
-                                <div className="field">
-                                    <div className="centered">
-                                    <label>Name</label>
-                                    </div>
-                                    <br/>
-                                    <input onChange={this.handleChange} name="name" value={this.state.name} placeholder='Enter name' />
 
+            <div className="ui middle aligned center aligned grid">
+                <div id="column1">
+                    <div className="centered">
+                        <h2 className="ui login image header">
+                            <div className="content">
+                            Sign up to get the scoop!
+                            </div>
+                        </h2>
+                    </div>
+                    <form className="ui form" onSubmit={this.handleSubmit}>
+                        <div className="ui stacked segment">
+                            <div className="field">
+                                <div className="ui left icon input">
+                                    <i className="address card icon"></i>
+                                    <input onChange={this.handleChange} name="name" value={this.state.name} placeholder='Enter name' />
                                 </div>
-                                <div className="field">
-                                    <div className="centered">
-                                        <label>Username</label>
-                                    </div>
+                            </div>
+                            <div className="field">
+                                <div className="ui left icon input">
+                                    <i className="user icon"></i>
                                     <input onChange={this.handleChange} name="username" value={this.state.username} placeholder='Enter username' />
                                 </div>
-                                
-                                <div className="field">
-                                    <div className="centered">
-                                        <label>Password</label>
-                                    </div>
+                            </div>
+                            <div className="field">
+                                <div className="ui left icon input">
+                                    <i className="lock icon"></i>
                                     <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder='Set  password' />
                                 </div>
-                                <div className="centered">
+                            </div>
+                            <div className="centered">
                                 <button className="ui yellow button"type='submit'>Submit</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         )

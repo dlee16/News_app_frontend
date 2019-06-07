@@ -7,7 +7,7 @@ import Login from '../components/Login'
 import Profile from '../components/Profile'
 import Favorites from '../components/Favorites'
 
-const url = 'http://localhost:3000/articles/find_articles'
+const url = 'https://thescoop101.herokuapp.com/articles/find_articles'
 
 class MainContainer extends React.Component{
 
@@ -41,7 +41,7 @@ class MainContainer extends React.Component{
                 return article
             }
         })
-        fetch(`http://localhost:3000/articles/${id}`, {
+        fetch(`https://thescoop101.herokuapp.com/articles/${id}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
@@ -55,7 +55,7 @@ class MainContainer extends React.Component{
 
     updateComments = (id, input) => {
 
-        fetch(`http://localhost:3000/comments`, {
+        fetch(`https://thescoop101.herokuapp.com/comments`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -82,7 +82,7 @@ class MainContainer extends React.Component{
 
 
     addToFavorites = (article) => {
-        fetch(`http://localhost:3000/favorites`, {
+        fetch(`https://thescoop101.herokuapp.com/favorites`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -125,6 +125,7 @@ class MainContainer extends React.Component{
 
                 <Route exact path={this.props.currentUser ? `/${this.props.currentUser.id}/profile`: '/home'} render={(routeProps) => (< Profile {...routeProps} currentUser={this.props.currentUser} deleteProfile={this.props.deleteProfile}/>)} />
 
+                <Route exact path="/" render={(routeProps) => (< Home {...routeProps} currentUser={this.props.currentUser} articles={this.state.articles} />)} />
             </div>
         )
     }

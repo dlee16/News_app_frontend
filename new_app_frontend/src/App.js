@@ -8,7 +8,8 @@ import { Route} from 'react-router-dom'
 class App extends React.Component {
 
   state ={
-    currentUser: null
+    currentUser: null,
+    error: null
   }
 
 
@@ -27,8 +28,19 @@ class App extends React.Component {
     })
   }
 
+  errorDisplay = (error) => {
+    this.setState({
+      error
+    })
+    return(
+    <div>
+      {this.state.error}
+    </div>
+    )
+  }
+
   deleteProfile = () => {
-    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
+    fetch(`https://thescoop101.herokuapp.com/users/${this.state.currentUser.id}`, {
       method: "DELETE"
     })
     .then(this.setState({
@@ -41,7 +53,7 @@ class App extends React.Component {
     const token = localStorage.getItem("token")
 
     if (token) {
-      fetch("http://localhost:3000/auto_login", {
+      fetch("https://thescoop101.herokuapp.com/auto_login", {
         headers: {
           "Authorization": token
         }
@@ -69,7 +81,7 @@ class App extends React.Component {
   }
 
   createUser = (user) => {
-    fetch("http://localhost:3000/users", {
+    fetch("https://thescoop101.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,6 +95,7 @@ class App extends React.Component {
           alert(response.errors)
         } else {
           this.setCurrentUser(response)
+          this.props.history.push('/home')
         }
       })
   }
@@ -101,7 +114,7 @@ class App extends React.Component {
         < Header />
         < MainContainer updateFavorites={this.updateFavorites} logOut={this.logOut} currentUser={this.state.currentUser}
           setCurrentUser={this.setCurrentUser} deleteProfile={this.deleteProfile}/>
-        < Route exact path="/signup" render={(routeProps) => (< Signup {...routeProps } createUser = {this.createUser}/>)} />
+        < Route exact path="/signup" render={(routeProps) => (< Signup {...routeProps } error={this.state.error} createUser = {this.createUser}/>)} />
       </div>
 
     )
