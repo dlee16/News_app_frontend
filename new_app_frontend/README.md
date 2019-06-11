@@ -8,6 +8,8 @@ In order to get the full experience, make sure you create an account to view the
 
 Interested in a particular topic? Use our search bar feature to to filter for your latest news. 
 
+[View live demo here!] (https://thescoop411.herokuapp.com/)
+
 ## Languages, Frameworks and Packages
 * ReactJS
 * Bcrypt Authentication
